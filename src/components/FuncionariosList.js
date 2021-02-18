@@ -40,24 +40,24 @@ class FuncionariosList extends Component {
               var parcelaDeduzivel = '';
               var aliquota = '';
 
-              if (item.salarioFunc <= 1903.98) {
+              const salarioBase = item.salarioFunc - item.descPrevidencia - (164.54 * item.numDependentes);
+
+              if (salarioBase <= 1903.98) {
                 parcelaDeduzivel = 0;
                 aliquota = 0;
-              } else if (item.salarioFunc > 1903.98 || item.salarioFunc <= 2826.65) {
+              } else if (salarioBase > 1903.98 || salarioBase <= 2826.65) {
                 parcelaDeduzivel = 142.80;
                 aliquota = 0.075;
-              } else if (item.salarioFunc > 2826.65 || item.salarioFunc <= 3751.05) {
+              } else if (salarioBase > 2826.65 || salarioBase <= 3751.05) {
                 parcelaDeduzivel = 354.80;
                 aliquota = 0.15;
-              } else if (item.salarioFunc > 3751.05 || item.salarioFunc <= 4664.68) {
+              } else if (salarioBase > 3751.05 || salarioBase <= 4664.68) {
                 parcelaDeduzivel = 636.13;
                 aliquota = 0.225;
-              } else if (item.salarioFunc > 4664.68) {
+              } else if (salarioBase > 4664.68) {
                 parcelaDeduzivel = 869.36;
                 aliquota = 27.5;
               }
-
-              const salarioBase = item.salarioFunc - item.descPrevidencia - (164.54 * item.numDependentes);
               const descontoIRRF = (salarioBase * aliquota) - parcelaDeduzivel;
 
 
