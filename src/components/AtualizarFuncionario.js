@@ -35,12 +35,29 @@ class FuncionariosForm extends Component {
   }
 
   handleSubmit = (e) => {
-    if (this.state.cpfFunc.length < 11) {
-      return alert('O CPF precisa ter 11 caracteres')
+    e.preventDefault()
+    var state = this.state;
+
+    state.cpfFunc = state.cpfFunc.replace(/\D/g, "");
+    console.log(state.cpfFunc);
+
+    if (state.cpfFunc.length === 11) {
+      state.cpfFunc = state.cpfFunc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      this.props.updateFuncionarios(this.state)
+    } else {
+      return alert('O CPF precisa ter 11 números')
     }
 
-    e.preventDefault()
-    this.props.updateFuncionarios(this.state)
+    state.salarioFunc = state.salarioFunc.toString().replace(".", "");
+    console.log(state.salarioFunc);
+
+    state.descPrevidencia = state.descPrevidencia.toString().replace(",", ".");
+
+    //   function formataCPF(cpf){
+    //   const pureCpf = cpf.replace(/\D/g, "");
+    // return pureCpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+    //}
+
   }
 
   render() {

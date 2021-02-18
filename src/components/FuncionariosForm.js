@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions/funcionariosActions';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
 
 class FuncionariosForm extends Component {
 
@@ -37,15 +36,23 @@ class FuncionariosForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    if (this.state.cpfFunc.length < 11) {
-      return alert('O CPF precisa ter 11 caracteres')
-    } else {
+    var state = this.state;
 
-      if (this.props.currentIndex === -1)
-        this.props.insertFuncionarios(this.state)
-      else
-        this.props.updateFuncionarios(this.state)
+    state.cpfFunc = state.cpfFunc.replace(/\D/g, "");
+    console.log(state.cpfFunc);
+
+    if (state.cpfFunc.length === 11) {
+      state.cpfFunc = state.cpfFunc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      this.props.insertFuncionarios(this.state);
+    } else {
+      return alert('O CPF precisa ter 11 números');
     }
+
+    state.salarioFunc = state.salarioFunc.toString().replaceAll(".", "");
+    console.log(state.salarioFunc);
+
+    state.descPrevidencia = state.descPrevidencia.toString().replaceAll(",", ".");
+
   }
 
   render() {
