@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import AtualizarFuncionario from './AtualizarFuncionario';
 import { Link } from 'react-router-dom';
 
-var novaJanela = '1';
+var novaJanela = '';
 
 class FuncionariosList extends Component {
 
