@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
-import FuncionariosForm from './FuncionariosForm'
 import { connect } from "react-redux";
 import * as actions from "../actions/funcionariosActions"
 import { bindActionCreators } from 'redux';
 
+import AtualizarFuncionario from './AtualizarFuncionario';
+import { Link } from 'react-router-dom';
+
+var novaJanela = '1';
+
 class FuncionariosList extends Component {
 
   handleEdit = (index) => {
-    this.props.updateFuncionariosIndex(index)
+    novaJanela = <AtualizarFuncionario />;
+    this.props.updateFuncionariosIndex(index);
+    
   }
 
   handleDelete = (index) => {
@@ -17,8 +23,6 @@ class FuncionariosList extends Component {
   render() {
     return (
       <div>
-        <FuncionariosForm />
-        <hr />
         <table>
           <thead>
             <tr>
@@ -33,8 +37,8 @@ class FuncionariosList extends Component {
           <tbody>
             {this.props.list.map((item, index) => {
 
-              var parcelaDeduzivel = 869.36;
-              var aliquota = 0.275;
+              var parcelaDeduzivel = '';
+              var aliquota = '';
 
               if (item.salarioFunc <= 1903.98) {
                 parcelaDeduzivel = 0;
@@ -56,19 +60,21 @@ class FuncionariosList extends Component {
               const salarioBase = item.salarioFunc - item.descPrevidencia - (164.54 * item.numDependentes);
               const descontoIRRF = (salarioBase * aliquota) - parcelaDeduzivel;
 
+
               return <tr key={index}>
-                <td>{item.nomeFunc}</td>
-                <td>{item.cpfFunc}</td>
-                <td>{item.salarioFunc}</td>
-                <td>{item.descPrevidencia}</td>
-                <td>{item.numDependentes}</td>
+                <td> {item.nomeFunc} </td>
+                <td> {item.cpfFunc} </td>
+                <td> {item.salarioFunc} </td>
+                <td> {item.descPrevidencia} </td>
+                <td> {item.numDependentes} </td>
                 <td> {descontoIRRF} </td>
-                <td><button onClick={() => this.handleEdit(index)}>Editar</button></td>
-                <td><button onClick={() => this.handleDelete(index)}>Deletar</button></td>
+                <td><Link className="btnEdit" onClick={() => this.handleEdit(index)}>  Editar </Link> </td>
+                <td><Link className="btnDelete" onClick={() => this.handleDelete(index)}> Deletar </Link></td>
               </tr>
             })}
           </tbody>
         </table>
+        {novaJanela}
       </div>
     )
   }

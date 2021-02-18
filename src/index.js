@@ -7,6 +7,8 @@ import { createStore } from "redux";
 import funcionariosReducer from "./reducers/funcionariosReducer";
 import { Provider } from "react-redux";
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 if (localStorage.getItem('funcionarios') == null)
   localStorage.setItem('funcionarios', JSON.stringify([]))
 let initialState = {
@@ -15,7 +17,14 @@ let initialState = {
 }
 const store = createStore(funcionariosReducer, initialState)
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>
+
+  , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

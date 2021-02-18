@@ -1,17 +1,16 @@
 body {
-  margin: auto;
-  width: 50%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+input, button {
   font-size: 1.5rem;
 }
 
-input,
-button {
-  font-size: 1.5rem;
+form {
+  position: flex;
+  flex-direction: column;
 }
 
 code {
@@ -19,9 +18,87 @@ code {
     monospace;
 }
 
-table,
-th,
-td {
+table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+th {
+  background: rgb(226, 223, 223);
+  font-size: 18px;
+}
+
+td {
+  font-size: 15px;
+}
+
+th, td {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 8px;
+}
+
+button {
+  height: fit-content;
+  width: 160px;
+
+  border-radius: 7px;
+  background: rgb(46, 45, 45);
+  color: #fff;
+
+  margin-top: 10px;
+
+  transition: background-color 0.2s;  
+}
+
+button:hover {
+  background: rgb(61, 60, 60);
+  cursor: pointer;
+}
+
+.btnEdit {
+  text-decoration: none;
+
+  height: 40px;
+  width: 80px;
+
+  font-size: 18px;
+  border-radius: 10px;
+  color: #fff;
+  background: #e4b127;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.2s;
+}
+
+
+.btnDelete {
+  text-decoration: none;
+
+  height: 40px;
+  width: 80px;
+  font-size: 18px;
+
+  border-radius: 10px;
+  color: #fff;
+  background: #f33f3ff1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.2s;  
+}
+
+.btnEdit:hover {
+  background: #ecc453;
+}
+
+.btnDelete:hover {
+  background: #e76363f1;
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions/funcionariosActions';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
 
 class FuncionariosForm extends Component {
 
@@ -36,22 +35,19 @@ class FuncionariosForm extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
     if (this.state.cpfFunc.length < 11) {
       return alert('O CPF precisa ter 11 caracteres')
-    } else {
-
-      if (this.props.currentIndex === -1)
-        this.props.insertFuncionarios(this.state)
-      else
-        this.props.updateFuncionarios(this.state)
     }
+
+    e.preventDefault()
+    this.props.updateFuncionarios(this.state)
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} autoComplete="off">
-        <div className="inputs">
+      <div>
+        <h3> Atualizando funcionário: {this.state.nomeFunc} </h3>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <input name="nomeFunc" placeholder="Nome"
             onChange={this.handleInputChange} value={this.state.nomeFunc} /> <br />
           <input name="cpfFunc" placeholder="CPF"
@@ -62,9 +58,9 @@ class FuncionariosForm extends Component {
             onChange={this.handleInputChange} value={this.state.descPrevidencia} /> <br />
           <input name="numDependentes" placeholder="Número de dependentes"
             onChange={this.handleInputChange} value={this.state.numDependentes} /> <br />
-          <button type="submit">Cadastrar</button>
-        </div>
-      </form>
+          <button type="submit"> Atualizar </button>
+        </form>
+      </div>
     )
   }
 }
