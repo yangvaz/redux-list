@@ -13,11 +13,16 @@ class FuncionariosList extends Component {
   handleEdit = (index) => {
     novaJanela = <AtualizarFuncionario />;
     this.props.updateFuncionariosIndex(index);
-
   }
 
   handleDelete = (index) => {
-    this.props.deleteFuncionarios(index)
+    var confirmButton = window.confirm("Deseja excluir os registros do funcionário na lista?");
+    if (confirmButton === true) {
+      this.props.deleteFuncionarios(index)
+      alert('Registro excluído.')
+    } else {
+      alert('Você cancelou a exclusão.')
+    }
   }
 
   render() {
