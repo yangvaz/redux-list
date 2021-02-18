@@ -52,12 +52,6 @@ class FuncionariosForm extends Component {
     console.log(state.salarioFunc);
 
     state.descPrevidencia = state.descPrevidencia.toString().replace(",", ".");
-
-    //   function formataCPF(cpf){
-    //   const pureCpf = cpf.replace(/\D/g, "");
-    // return pureCpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-    //}
-
   }
 
   render() {
