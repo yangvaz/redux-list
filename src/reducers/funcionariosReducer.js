@@ -23,6 +23,4 @@ export const funcionariosReducer = (state, action) => {
 
 }
 
-
-
 export default funcionariosReducer

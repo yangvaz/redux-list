@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import * as actions from '../actions/funcionariosActions';
+import { connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-class FuncionariosForm extends Component {
+import * as actions from '../actions/funcionariosActions';
+
+class AtualizarFuncionario extends Component {
 
   state = {
     ...this.returnStateObject()
@@ -39,7 +40,6 @@ class FuncionariosForm extends Component {
     var state = this.state;
 
     state.cpfFunc = state.cpfFunc.replace(/\D/g, "");
-    console.log(state.cpfFunc);
 
     if (state.cpfFunc.length === 11) {
       state.cpfFunc = state.cpfFunc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
@@ -49,7 +49,6 @@ class FuncionariosForm extends Component {
     }
 
     state.salarioFunc = state.salarioFunc.toString().replace(".", "");
-    console.log(state.salarioFunc);
 
     state.descPrevidencia = state.descPrevidencia.toString().replace(",", ".");
   }
@@ -59,7 +58,7 @@ class FuncionariosForm extends Component {
       <div>
         <h3> Atualizando funcionário: {this.state.nomeFunc} </h3>
         <form onSubmit={this.handleSubmit} autoComplete="off">
-          <input name="nomeFunc" placeholder="Nome"
+          <input name="nomeFunc" placeholder="Nome" data-testid="nome-input"
             onChange={this.handleInputChange} value={this.state.nomeFunc} /> <br />
           <input name="cpfFunc" placeholder="CPF"
             onChange={this.handleInputChange} value={this.state.cpfFunc} /> <br />
@@ -90,4 +89,4 @@ const mapDispatchToProps = dispatch => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FuncionariosForm)
+export default connect(mapStateToProps, mapDispatchToProps)(AtualizarFuncionario)

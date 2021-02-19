@@ -39,7 +39,6 @@ class FuncionariosForm extends Component {
     var state = this.state;
 
     state.cpfFunc = state.cpfFunc.replace(/\D/g, "");
-    console.log(state.cpfFunc);
 
     if (state.cpfFunc.length === 11) {
       state.cpfFunc = state.cpfFunc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
@@ -49,7 +48,6 @@ class FuncionariosForm extends Component {
     }
 
     state.salarioFunc = state.salarioFunc.toString().replaceAll(".", "");
-    console.log(state.salarioFunc);
 
     state.descPrevidencia = state.descPrevidencia.toString().replaceAll(",", ".");
 

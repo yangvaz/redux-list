@@ -1,5 +1,7 @@
 ###Instruções
 
+Já tendo instalado o node.js, que vem com npm na instalação, faça como descrito abaixo.
+
 Eu uso yarn. Caso queira instalar:
 >npm install --global yarn
 
@@ -24,4 +26,11 @@ Vá ao terminal e digite:
 > yarn add @types/react-router-dom -D"
 
 
+
+##Testes
+
+Testes serão feitos com auxílio da lib "@testing-library/react"
+Pra instalar, basta ir no terminal e digitar:
+
+> yarn add @testing-library/react -D
 
